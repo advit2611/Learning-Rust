@@ -1,4 +1,6 @@
 use std::io;
+use rand::Rng;
+
 
 fn main() {
     println!("I need a Software job!");
@@ -7,14 +9,15 @@ fn main() {
 
     let mut guess= String::new();
 
-    let num = 82; 
+    let num = rand::thread_rng().gen_range(1..=1).to_string(); 
 
     loop {
+        guess.clear();
         io::stdin().read_line( &mut guess).expect("Expected a number");
-        if guess == num.to_string(){
-            print!("Your guess ({guess}) is correct!");
+        if guess.trim() == num{
+            print!("Your guess({}) is correct!", guess.trim());
             break;
         }
-        println!("Wrong Guess, try again!")
+        println!("Wrong Guess ({}), try again! ", guess.trim())
     }
 }
