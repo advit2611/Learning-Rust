@@ -7,11 +7,11 @@ fn main() {
 
     let mut s1 = String::from("hello world!"); // This stores string in heap while `let s1 = "Hi"` stores in stack
 
-    let len = add_h_and_calculate_length(&mut s1);
+    let len = add_h_and_calculate_length(&mut s1); // Function mutates and pushes an 'h' to the string
 
     println!("length of {} is {}", &s1, len);
 
-    println!("First word is at index {}", find_first_word(&s1));
+    println!("First word is {}", find_first_word(&s1));
 
     let farn = convet_celsius(98.0);
 
@@ -78,13 +78,13 @@ fn add_h_and_calculate_length(s: &mut String) -> usize{
     result
 }
 
-fn find_first_word(s: &String) -> usize{
+fn find_first_word(s: &str) -> &str{
     let input = s.as_bytes();
     for (i, &letter) in input.iter().enumerate(){
         if letter == b' '{
-            return i
+            return &s[0..i]
         }
     }
-    return input.len();
+    return &s[..];
 
 }
