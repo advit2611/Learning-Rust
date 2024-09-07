@@ -5,6 +5,14 @@ use rand::Rng;
 fn main() {
     println!("I need a Software job!");
 
+    let mut s1 = String::from("hello world!"); // This stores string in heap while `let s1 = "Hi"` stores in stack
+
+    let len = add_h_and_calculate_length(&mut s1);
+
+    println!("length of {} is {}", &s1, len);
+
+    println!("First word is at index {}", find_first_word(&s1));
+
     let farn = convet_celsius(98.0);
 
     let celsius = convet_farnheit(farn);
@@ -62,4 +70,21 @@ fn generate_fibonacci(index:i64) -> i64{
     else{
         return generate_fibonacci(index-1) + generate_fibonacci(index-2)
     }
+}
+
+fn add_h_and_calculate_length(s: &mut String) -> usize{
+    s.push_str("h");
+    let result = s.len();
+    result
+}
+
+fn find_first_word(s: &String) -> usize{
+    let input = s.as_bytes();
+    for (i, &letter) in input.iter().enumerate(){
+        if letter == b' '{
+            return i
+        }
+    }
+    return input.len();
+
 }
