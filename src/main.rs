@@ -5,6 +5,8 @@ use rand::Rng;
 fn main() {
     println!("I need a Software job!");
 
+    using_struct();
+
     let mut s1 = String::from("hello world!"); // This stores string in heap while `let s1 = "Hi"` stores in stack
 
     let len = add_h_and_calculate_length(&mut s1); // Function mutates and pushes an 'h' to the string
@@ -87,4 +89,34 @@ fn find_first_word(s: &str) -> &str{
     }
     return &s[..];
 
+}
+
+struct User {
+    username: String,
+    email: String,
+    active: bool,
+    number_of_sign_ins: u64
+}
+
+fn using_struct(){
+    let user_1 = User {
+        username: String::from("Advit"),
+        email: String::from("abc@gmail.com"),
+        active: false,
+        number_of_sign_ins: 1,
+    };
+
+    println!("The username is {} with {} has an active account {} with number of sign ins {}", user_1.username, user_1.email, user_1.number_of_sign_ins, user_1. active);
+
+    let user_2 = User {
+        email: String::from("xyz@gmail.com"),
+        ..user_1
+    };
+
+    struct Color (u8, u8, u8);
+    fn set_bg_color(color: Color){
+        println!("The background is set to color with R={}, G={}, B={}", color.0, color.1, color.2);
+    }
+    let red = Color(100, 0, 0);
+    set_bg_color(red);
 }

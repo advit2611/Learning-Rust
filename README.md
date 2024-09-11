@@ -32,6 +32,31 @@
     ```rust
     println!("{}", &[..]);
     ```
+### Understadning structure with struct
+
+  - You can create a struct with `struct` keyword
+  - They are similar to tuples that can take different fields as keys and data types
+    ```rust
+    struct User {
+      username: String,
+      email: String,
+      active: bool,
+    };
+    ```
+  - There are Struct tuples like
+    ```rust
+    struct Color (u8, u8, u8);
+    ```
+    which can thre RGB values of type `u8`
+  - An instance needs to be created as 
+    ```rust
+    let user:User = User {
+      username: String::from("Advit"),
+      email: String::from("abc@gmail.com")
+    }
+    ```
+  - These can be destructred by dot notation as `user.username`
+  - The data types can only be owned data types like `String` that have `Copy` trait unlike `&str`
 
 
 
