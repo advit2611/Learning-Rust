@@ -1,13 +1,24 @@
-use std::io;
+use std::{fmt::Debug, io};
 use rand::Rng;
 
 
 fn main() {
     println!("I need a Software job!");
+    
+    
+    let rect = Rectangle{
+        width: 32,
+        height: 54,
+    };
+
+    let area = calculate_area(&rect);
+    println!("The area for width {} and height {} is {} ", rect.width, rect.height, area);
+    println!("{:#?}",rect);
 
     using_struct();
 
     let mut s1 = String::from("hello world!"); // This stores string in heap while `let s1 = "Hi"` stores in stack
+
 
     let len = add_h_and_calculate_length(&mut s1); // Function mutates and pushes an 'h' to the string
 
@@ -91,6 +102,7 @@ fn find_first_word(s: &str) -> &str{
 
 }
 
+#[derive(Debug)]
 struct User {
     username: String,
     email: String,
@@ -113,10 +125,22 @@ fn using_struct(){
         ..user_1
     };
 
+    println!("user 2 is {:#?}", user_2);
+
     struct Color (u8, u8, u8);
     fn set_bg_color(color: Color){
         println!("The background is set to color with R={}, G={}, B={}", color.0, color.1, color.2);
     }
     let red = Color(100, 0, 0);
     set_bg_color(red);
+}
+
+#[derive(Debug)]
+struct Rectangle{
+    width: u32,
+    height: u32,
+}
+fn calculate_area(rect: &Rectangle) -> u32 {
+    let area = rect.width * rect.height;
+    area
 }

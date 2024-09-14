@@ -57,6 +57,26 @@
     ```
   - These can be destructred by dot notation as `user.username`
   - The data types can only be owned data types like `String` that have `Copy` trait unlike `&str`
+  - It is good practice to pass reference of the struct rather than the actual varibale to avoid the function taking the ownership by using the `&` operator.
+    ```rust
+    let area = calculate_area(&rect);
+    println!("{}", rect);
+    ```
+  - To use structs in print statements, you need to provide implementation before the instantiation of the struct like
+    ```rust
+    #[dervie(Debug)]
+    struct Rectangle{
+      width: u32,
+      height: u32,
+    }
+
+    let rect = Rectangle {
+      width: 32,
+      height: 40,
+    }
+    println!("{:#?}", &rect);
+    ```
+
 
 
 
