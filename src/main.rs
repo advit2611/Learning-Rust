@@ -11,8 +11,13 @@ fn main() {
         height: 54,
     };
 
-    let area = calculate_area(&rect);
-    println!("The area for width {} and height {} is {} ", rect.width, rect.height, area);
+    let square = Rectangle::square(rect.width);
+
+    let area_of_rectangle = calculate_area(&rect);
+    let area_of_square = square.calculate_area();
+    println!("The area for width {} and height {} is {} ", rect.width, rect.height, area_of_rectangle);
+    println!("The area for length {} is {} ", square.width, area_of_square);
+    println!("Can Rectangle hold the square, {}", square.can_hold(&rect));
     println!("{:#?}",rect);
 
     using_struct();
@@ -140,7 +145,27 @@ struct Rectangle{
     width: u32,
     height: u32,
 }
+
 fn calculate_area(rect: &Rectangle) -> u32 {
     let area = rect.width * rect.height;
     area
+}
+
+impl Rectangle {
+
+    fn calculate_area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn square(side: u32) -> Self{
+        Self {
+            width: side,
+            height: side,
+        }
+    }
+
+    fn can_hold(&self, other: &Rectangle) -> bool{
+        self.height >= other.height && self.width >= other.width
+    }
+    
 }

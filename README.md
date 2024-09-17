@@ -76,6 +76,29 @@
     }
     println!("{:#?}", &rect);
     ```
+  - Creating methods for structs can be done using `impl` keyword which implements a method for the respective struct
+    ```rust
+    impl Rectangle {
+      fn calculate_area(&self) -> u32 {
+        self.width * self.height
+        }
+
+      fn square(side: u32) -> Self{
+          Self {
+              width: side,
+              height: side,
+          }
+      }
+
+      fn can_hold(&self, other: &Rectangle) -> bool{
+          self.height >= other.height && self.width >= other.width
+      }
+    }
+    ```
+  - `can_hold()` method here is an associated method which can be called as:
+    ```rust
+    Rectangle::square(32);
+    ```
 
 
 
