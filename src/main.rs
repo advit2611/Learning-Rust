@@ -5,6 +5,8 @@ use rand::Rng;
 fn main() {
     println!("I need a Software job!");
     
+    let coin = Coin::Quarter(UsState::Alaska);
+    println!("Value of coin is {}", values_to_coin(coin));
     
     let rect = Rectangle{
         width: 32,
@@ -168,4 +170,35 @@ impl Rectangle {
         self.height >= other.height && self.width >= other.width
     }
     
+}
+#[derive(Debug)]
+enum UsState{
+    Alaska,
+    Alabama,
+}
+
+enum Coin{
+    Penny,
+    Nicklel,
+    Dime,
+    Quarter(UsState),
+}
+
+fn values_to_coin(coin: Coin) -> u8{
+    match coin {
+        Coin::Penny => {
+            println!("We have a penny");
+            1
+        },
+        Coin::Nicklel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter(UsState::Alaska) =>{
+            println!("Got an Alaskan Quarter");
+            25
+        },
+        Coin::Quarter(state) => {
+            println!("This coin is from {:#?}", state);
+            25
+        }
+    }
 }

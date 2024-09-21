@@ -100,6 +100,33 @@
     Rectangle::square(32);
     ```
 
+### Leraning Enums
+  - Enums can be initialized with keyword `enum`
+  - These can store multiple values with different types
+    ```rust
+    enum IpAddressKind{
+      Ipv4,
+      Ipv6,
+    }
+    ```
+  - You can add type constraints to these values with the following syntax
+    ```rust
+    enum IpAddressKind{
+      Ipv4(u8, u8, u8, u8),
+      Ipv6(String),
+    }
+    ```
+  - These enums can be stored as a datatype in structs
+    ```rust
+    struct network{
+      A: String,
+      Routing: IpAddressKind
+    }
+    ```
+  - Storing a value of particular enum as:
+    ```rust
+    let ip_type = IpAddressKind::Ipv4(0, 0, 0, 0)
+    ```
 
 
 
