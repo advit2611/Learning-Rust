@@ -128,6 +128,26 @@
     let ip_type = IpAddressKind::Ipv4(0, 0, 0, 0)
     ```
 
+### Packages and crates
+  - There can be at most one `lib.rs` file in a project
+  - `lib.rs` can never be run
+  - all modules and variables instantiated needed to be declared public with `pub` keyword.
+  - The functions can be imported using `use` keyword and referencing root name of the project
+    ```rust
+    use hello_cargo::authenticate;
+    use hello_cargo::Credentials;
+    ```
+  - A file can be decalared a module with `mod` keyword
+  - There can be two types of refrences:
+    - Absolute reference
+      ```rust
+      crate::authenticate::login();
+      ```
+    - Relative reference
+      ```rust
+      super::connect_to_database::connect();
+      ```
+
 
 
 

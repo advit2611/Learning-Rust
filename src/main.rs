@@ -1,10 +1,18 @@
 use std::{fmt::Debug, io};
 use rand::Rng;
-
+use::hello_cargo::authenticate;
+use::hello_cargo::Credentials;
 
 fn main() {
     println!("I need a Software job!");
     
+    let cred = Credentials{
+        username: String::from("Advit"),
+        password: String::from("password"),
+    };
+
+    println!("{:#?}", authenticate(cred));
+
     let coin = Coin::Quarter(UsState::Alaska);
     println!("Value of coin is {}", values_to_coin(coin));
     
