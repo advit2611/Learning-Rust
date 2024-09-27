@@ -148,6 +148,24 @@
       super::connect_to_database::connect();
       ```
 
+### Vectors
+  - Vectors are like lists or arrays that can hold multiple values of same data type
+    ```rust
+    let vec = Vec::new();
+    ```
+    or 
+    ```rust
+    let vec = vec![1, 2, 3];
+    ```
+  - Vectors can hold different data types by instantiating a enum and using it to store the values
+  - Values of a vector can be changed by derefrencing
+    ```rust
+    let mut vec = vec![1, 1, 1, 3, 5, 8]
+    let third_value = &mut vec[2];
+    *third_value = 2
+    println!("The correct fibonacci is {:?}", vec);
+    ```
+
 
 
 

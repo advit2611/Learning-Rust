@@ -11,6 +11,6 @@ pub enum Status {
     Rejected,    
 }
 
-pub fn authenticate(Cred: Credentials) -> Status{
+pub fn authenticate(cred: Credentials) -> Status{
     return Status::Authenticated;
 }
