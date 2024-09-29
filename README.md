@@ -165,6 +165,32 @@
     *third_value = 2
     println!("The correct fibonacci is {:?}", vec);
     ```
+### Strings
+  - Strings are a wrapper to vectors
+  - ASCII strings can be sliced/indexed over by:
+    ```rust
+    let s = "Hello";
+    println!("First character", &s[0..1]);
+    println!("Second to last character", &s[1..-1]);
+    ```
+  - The `+` operator is an implementation like `add(self, other: &str)` function, the first operand is borrowed and second can be referenced
+    ```rust
+    let s3 = s1 + &s2;
+    ```
+  - To not borrow anything
+    ```rust
+    let s4 = format!("{s1}{s2}")
+    ```
+  - Strings are stored as bytes and non-ASCII characters can have 2 bytes for one character. As rust indexes over bytes, non-ASCII strings can make the code panic. 
+  - To slice over a non-ASCII string
+    ```rust
+    let s5: String = String::from("नमस्ते").chars().take(2).collect();
+    println!("First two characters of s5 non-ASCII string is {}", s5);
+    ```
+  - `.chars()` converts the String type to characters
+  - `.take()` takes first n character in the string
+  - `.collect()` takes the string and stores in the variable
+  - The data type needs to be explicitly specified for `collect()` function
 
 
 

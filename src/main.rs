@@ -6,6 +6,18 @@ use std::{fmt::Debug, io};
 fn main() {
     println!("I need a Software job!");
 
+    let s1 = String::from("Hello, ");
+    let s2 = String::from("World!");
+
+    let s3 = format!("{s1}{s2}"); // Does not take ownership of either variable
+    let s4 =  s1 + &s2; // Takes ownership of s1
+
+    let s5: String = String::from("नमस्ते").chars().take(2).collect();
+
+    println!("Concatenation of s1 and s2 is {s3}");
+    println!("Concatenation of s1 and s2 is {s4}");
+    println!("First two characters of s5 non-ASCII string is {}", s5);
+
     let vec: Vec<i32> = vec![5, 4, 6, 2];
 
     let fourth_value = match vec.get(30) {
