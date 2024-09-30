@@ -1,10 +1,35 @@
 use hello_cargo::authenticate;
 use hello_cargo::Credentials;
 use rand::Rng;
+use std::collections::HashMap;
 use std::{fmt::Debug, io};
 
 fn main() {
     println!("I need a Software job!");
+
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("blue"), 25);
+    scores.insert(String::from("yellow"), 10);
+
+    // One way of updating a value with .unwrap_or()
+    scores.insert(String::from("blue"), scores.get(&String::from("blue")).copied().unwrap_or(0) + 5);
+    // Second way of updating a value in map with match case with dereferencing to get the actual value
+    match scores.get(&String::from("yellow")){
+        Some(score) => {scores.insert(String::from("yellow"), *score + 10);},
+        None => {scores.insert(String::from("yellow"), 5);}
+    }
+    println!("hasmap is {:#?}", scores);
+
+    let text = "hello I am an applicant for an organization!";
+    let mut word_count: HashMap<char, i32> = HashMap::new();
+
+    for word in text.chars(){
+        let count = word_count.entry(word).or_insert(0);
+        *count += 1;
+    }
+
+    println!("Word count is {:#?}", word_count);
 
     let s1 = String::from("Hello, ");
     let s2 = String::from("World!");

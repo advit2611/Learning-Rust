@@ -192,6 +192,28 @@
   - `.collect()` takes the string and stores in the variable
   - The data type needs to be explicitly specified for `collect()` function
 
+### HashMaps
+  - These can be instantiated by 
+    ```rust
+    let scores: Hashmap<String, i32> = Hashmap::new();
+    scores.insert(String::from("blue"), 10);
+    ```
+  - You can store different data types by declaring a enum
+  - for inserting and updating a value at the same time
+    ```rust
+    scores.insert(String::from("blue"), scores.get(&String::from("blue")).copied().unwrap_or(0) + 5);
+    ```
+    Here, `copied()` can be used to avoid dereferencing the `0` value sa generally required with `&0`
+  - `scores.get(&key)` returns an `Option<{something}>` that can be implemented with `Some()` and `None`
+  - as the `.get()` returns a reference to the value `&score`, it can be used to update the existing value by getting the actual value with `*score`
+  - To return the current value for a key or insert a default value if key does not exist you can use 
+    ```rust
+    let count = word_count.entry(word).or_insert(0);
+    *count += 1
+    ```
+    it needs to dereferenced with `*count` to update
+    
+
 
 
 
