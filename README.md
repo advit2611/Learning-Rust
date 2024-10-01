@@ -212,6 +212,9 @@
     *count += 1
     ```
     it needs to dereferenced with `*count` to update
+
+### Error Handling
+  - Panic can be called explicitly with `panic!` macro or implicitly like accessing an index out of bounds.
     
 
 
