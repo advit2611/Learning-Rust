@@ -7,6 +7,23 @@ use std::{fmt::Debug, io};
 fn main() {
     println!("I need a Software job!");
 
+    fn divide(x: i32, y: i32) -> Result<i32, String>{
+        if y == 0{
+            return Err(String::from("Divided by 0"));
+        }
+        Ok(x/y)
+    }
+
+    let divided_result = match divide(3, 0){
+        Ok(num) => num,
+        Err(error) => {
+            println!("{error}");
+            -1
+        },
+    };
+
+    println!("The quotient is {}", divided_result);
+
     let mut scores = HashMap::new();
 
     scores.insert(String::from("blue"), 25);

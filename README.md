@@ -215,6 +215,9 @@
 
 ### Error Handling
   - Panic can be called explicitly with `panic!` macro or implicitly like accessing an index out of bounds.
+  - `Result<T, E>` is used to not panic or quit the running of a program. 
+  - `T` and `E` are generics that hold the datatype of returned values for `Ok` and `Err`
+  - `Result<T, E>` can be handled with `unwrap_or()` or `match`
     
 
 
