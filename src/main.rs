@@ -8,8 +8,8 @@ fn main() {
     println!("I need a Software job!");
 
     struct Point<T> {
-        x_axis: T,
-        y_axis: T,
+        x: T,
+        y: T,
     }
 
     impl<T> Point<T> {
@@ -36,9 +36,7 @@ fn main() {
         }
         return res;
     }
-    fn calculate_man_distance<T: std::ops::Add<Output = T>>(p: Point<T>) -> T{
-        p.x_axis + p.y_axis
-      }
+    
     let arr = vec![1, 2, 3];
     println!("Largest of {:?}, is {:?} ", arr, get_largest(&arr));
     fn divide(x: i32, y: i32) -> Result<i32, String> {
