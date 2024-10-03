@@ -218,7 +218,23 @@
   - `Result<T, E>` is used to not panic or quit the running of a program. 
   - `T` and `E` are generics that hold the datatype of returned values for `Ok` and `Err`
   - `Result<T, E>` can be handled with `unwrap_or()` or `match`
-    
+
+### Generics
+  - Generics with any letter, however, it is good convention to start with `<T>`
+  - These help define different data types without replicating code like 
+    ```rust
+    struct Point<T, U>{
+      x_axis: T,
+      y_axis: U,
+    }
+    ```
+  - These can be declared in functions like 
+    ```rust
+    fn calculate_man_distance<T: std::ops::Add<Output = T>>(p: Point<T>) -> T{
+        p.x_axis + p.y_axis
+      }
+    ```
+    `std::ops::Add<Output` allows addition of same generics
 
 
 

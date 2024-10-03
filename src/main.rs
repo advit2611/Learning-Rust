@@ -7,19 +7,53 @@ use std::{fmt::Debug, io};
 fn main() {
     println!("I need a Software job!");
 
-    fn divide(x: i32, y: i32) -> Result<i32, String>{
-        if y == 0{
-            return Err(String::from("Divided by 0"));
-        }
-        Ok(x/y)
+    struct Point<T> {
+        x_axis: T,
+        y_axis: T,
     }
 
-    let divided_result = match divide(3, 0){
+    impl<T> Point<T> {
+        fn new(x:T, y:T) -> Point<T>{
+            Point { x, y }
+        }
+    }
+
+    impl Point<i32> {
+        fn distance_from_origin(&self) -> f32 {
+            (((self.x).pow(2) + (self.y).pow(2)) as f32).powf(0.5)
+        }
+    }
+
+    let p = Point::new(1, 1).distance_from_origin();
+    println!("Distance: {}", p);
+
+    fn get_largest<T: std::cmp::PartialOrd>(arr: &Vec<T>) -> &T {
+        let mut res = &arr[0];
+        for item in arr {
+            if item >= res {
+                res = item
+            }
+        }
+        return res;
+    }
+    fn calculate_man_distance<T: std::ops::Add<Output = T>>(p: Point<T>) -> T{
+        p.x_axis + p.y_axis
+      }
+    let arr = vec![1, 2, 3];
+    println!("Largest of {:?}, is {:?} ", arr, get_largest(&arr));
+    fn divide(x: i32, y: i32) -> Result<i32, String> {
+        if y == 0 {
+            return Err(String::from("Divided by 0"));
+        }
+        Ok(x / y)
+    }
+
+    let divided_result = match divide(3, 0) {
         Ok(num) => num,
         Err(error) => {
             println!("{error}");
             -1
-        },
+        }
     };
 
     println!("The quotient is {}", divided_result);
@@ -30,18 +64,25 @@ fn main() {
     scores.insert(String::from("yellow"), 10);
 
     // One way of updating a value with .unwrap_or()
-    scores.insert(String::from("blue"), scores.get(&String::from("blue")).copied().unwrap_or(0) + 5);
+    scores.insert(
+        String::from("blue"),
+        scores.get(&String::from("blue")).copied().unwrap_or(0) + 5,
+    );
     // Second way of updating a value in map with match case with dereferencing to get the actual value
-    match scores.get(&String::from("yellow")){
-        Some(score) => {scores.insert(String::from("yellow"), *score + 10);},
-        None => {scores.insert(String::from("yellow"), 5);}
+    match scores.get(&String::from("yellow")) {
+        Some(score) => {
+            scores.insert(String::from("yellow"), *score + 10);
+        }
+        None => {
+            scores.insert(String::from("yellow"), 5);
+        }
     }
     println!("hasmap is {:#?}", scores);
 
     let text = "hello I am an applicant for an organization!";
     let mut word_count: HashMap<char, i32> = HashMap::new();
 
-    for word in text.chars(){
+    for word in text.chars() {
         let count = word_count.entry(word).or_insert(0);
         *count += 1;
     }
@@ -52,7 +93,7 @@ fn main() {
     let s2 = String::from("World!");
 
     let s3 = format!("{s1}{s2}"); // Does not take ownership of either variable
-    let s4 =  s1 + &s2; // Takes ownership of s1
+    let s4 = s1 + &s2; // Takes ownership of s1
 
     let s5: String = String::from("नमस्ते").chars().take(2).collect();
 
