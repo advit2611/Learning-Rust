@@ -236,6 +236,35 @@
     ```
     `std::ops::Add<Output` allows addition of same generics
 
+### Traits
+  - traits are like interfaces and abstract classes in Java which contains a function to be implemneted later by a `struct`
+  - These can be declared as
+    ```rust
+    trait Summary {
+      fn summarize(&self) -> String;
+    }
+    ```
+  - Which can be implemented for a `struct` as
+    ```rust
+    impl Summary for Tweet {
+      fn summarize(&self) -> String {
+        return format!("{}", self.content);
+      }
+    }
+    ```
+  - To only accept a `struct` that implements a function
+    ```rust
+    fn get_summary<T: Summary>(source: &T){
+      println!("{}", source.summarize());
+    }
+    ```
+    or
+    ```rust
+    fn get_summary(source: &impl Summary){
+      println!("{}", source.summarize());
+    }
+    ```
+    adding `&` makes sure the reference is passed and variable is not borrowed
 
 
 
