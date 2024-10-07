@@ -266,5 +266,15 @@
     ```
     adding `&` makes sure the reference is passed and variable is not borrowed
 
+### Lifetimes
+  - Lifetimes can be declared with `'` and a generic in a function as 
+    ```rust
+    fn longest_string <'a> (x: &'a str, y:&'a str) -> &'a str{
+          // TODO:
+        }
+    ```
+  - The life time is defined by the shortest scope of a variable until it is alive in the heap
+  - All `&str` string literals have `'static` lifetime where they are valid for the whole period of program and are saved in binary instead of stack or heap
+
 
 

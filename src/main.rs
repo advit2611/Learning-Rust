@@ -2,11 +2,19 @@ use hello_cargo::authenticate;
 use hello_cargo::Credentials;
 use rand::Rng;
 use std::collections::HashMap;
-use std::fmt::format;
 use std::{fmt::Debug, io};
 
 fn main() {
     println!("I need a Software job!");
+
+    //Lifetimes
+    let string1 = "Hi";
+    let str2: &str;
+    {
+        let string2 = "Hello";
+        str2 = string2;  //Even though scope of string2 ends here the lifetime of string literals are static
+    }
+    println!("Longer String is {}", longest_string(&string1, &str2));
 
     // Traits
     let tweet = Tweet {
@@ -393,6 +401,13 @@ fn print_tweet(source: &impl Summary) {
 }
 
 // Can also have restricted parameter as
-fn get_content<T: Summary>(source: &T){
+fn get_content<T: Summary>(source: &T) {
     println!("{}", source.summarize());
+}
+
+fn longest_string<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() >= y.len() {
+        return x;
+    }
+    y
 }
