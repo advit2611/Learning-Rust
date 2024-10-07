@@ -2,11 +2,24 @@ use hello_cargo::authenticate;
 use hello_cargo::Credentials;
 use rand::Rng;
 use std::collections::HashMap;
+use std::fmt::format;
 use std::{fmt::Debug, io};
 
 fn main() {
     println!("I need a Software job!");
 
+    // Traits
+    let tweet = Tweet {
+        username: String::from("Advit"),
+        content: String::from("I am learning Rust"),
+        reply: false,
+        retweet: false,
+    };
+
+    print_tweet(&tweet);
+    get_content(&tweet);
+
+    // Generics
     struct Point<T> {
         x: T,
         y: T,
@@ -37,6 +50,7 @@ fn main() {
         return res;
     }
 
+    //Result and Panic for Exception Handling
     let arr = vec![1, 2, 3];
     println!("Largest of {:?}, is {:?} ", arr, get_largest(&arr));
     fn divide(x: i32, y: i32) -> Result<i32, String> {
@@ -56,6 +70,7 @@ fn main() {
 
     println!("The quotient is {}", divided_result);
 
+    //Hashmaps
     let mut scores = HashMap::new();
 
     scores.insert(String::from("blue"), 25);
@@ -87,6 +102,7 @@ fn main() {
 
     println!("Word count is {:#?}", word_count);
 
+    //Strings
     let s1 = String::from("Hello, ");
     let s2 = String::from("World!");
 
@@ -99,6 +115,7 @@ fn main() {
     println!("Concatenation of s1 and s2 is {s4}");
     println!("First two characters of s5 non-ASCII string is {}", s5);
 
+    //Vectors
     let vec: Vec<i32> = vec![5, 4, 6, 2];
 
     let fourth_value = match vec.get(30) {
@@ -110,6 +127,7 @@ fn main() {
     };
     println!("Fourth value for {:?} is {}", vec, fourth_value);
 
+    //Enumerators
     #[derive(Debug)]
     enum SpreadSheetCell {
         Int(i32),
@@ -349,4 +367,32 @@ fn values_to_coin(coin: Coin) -> u8 {
             25
         }
     }
+}
+
+trait Summary {
+    fn summarize(&self) -> String;
+}
+struct Tweet {
+    username: String,
+    content: String,
+    reply: bool,
+    retweet: bool,
+}
+
+impl Summary for Tweet {
+    fn summarize(&self) -> String {
+        return format!(
+            "The content of tweet is {} published by {} with a reply({}) and retweet({})",
+            self.content, self.username, self.reply, self.retweet
+        );
+    }
+}
+
+fn print_tweet(source: &impl Summary) {
+    println!("{}", source.summarize());
+}
+
+// Can also have restricted parameter as
+fn get_content<T: Summary>(source: &T){
+    println!("{}", source.summarize());
 }
