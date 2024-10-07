@@ -13,7 +13,7 @@ fn main() {
     }
 
     impl<T> Point<T> {
-        fn new(x:T, y:T) -> Point<T>{
+        fn new(x: T, y: T) -> Point<T> {
             Point { x, y }
         }
     }
@@ -36,7 +36,7 @@ fn main() {
         }
         return res;
     }
-    
+
     let arr = vec![1, 2, 3];
     println!("Largest of {:?}, is {:?} ", arr, get_largest(&arr));
     fn divide(x: i32, y: i32) -> Result<i32, String> {
