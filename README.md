@@ -276,5 +276,22 @@
   - The life time is defined by the shortest scope of a variable until it is alive in the heap
   - All `&str` string literals have `'static` lifetime where they are valid for the whole period of program and are saved in binary instead of stack or heap
 
+### Tests
+  - Tests can be added in `src/lib.rs` file with keyword at the start of implementing the test module `#[cfg(test)]`
+  - `assert_eq!()` macro can be used to test if two parameters porovided are equal
+  - Implementation can be seen as 
+    ```rust
+    #[cfg(test)]
+    mod tests{
+        use super::*;
+
+        #[test]
+        fn it_works(){
+            let result = add_two(2, 2);
+            assert_eq!(result, 4);
+        }
+    }
+    ```
+
 
 
